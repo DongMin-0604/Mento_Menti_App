@@ -242,6 +242,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
             <Button
+                android:id="@+id/Batting_NextBT"
                 android:layout_width="190px"
                 android:layout_height="82px"
                 android:background="@drawable/button_custom"

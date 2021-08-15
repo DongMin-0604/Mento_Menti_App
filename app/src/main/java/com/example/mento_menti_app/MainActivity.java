@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button Win_Batting_BT,Draw_Batting_BT,lose_Batting_BT;
-    Button Batting_Back_BT;
+    Button Batting_Back_BT,Batting_Next_BT;
     LinearLayout Batting_layout;
     TextView Batting_Text,Batting_token_TV,Home_token_TV;
     EditText Batting_Edit_Text;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Home_token_TV = findViewById(R.id.Home_token_TV);
         Batting_token_TV.setText(Integer.toString(token));
         Home_token_TV.setText(Integer.toString(token));
-
+        Batting_Next_BT = findViewById(R.id.Batting_NextBT);
         GameStart();
     }
     public void GameStart(){
@@ -64,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
                 Batting_layout.setVisibility(View.INVISIBLE);
                 Batting_Text.setText("");
                 Batting_Edit_Text.setText("");
+            }
+        });
+        Batting_Next_BT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RunningActivity.class);
+                startActivity(intent);
             }
         });
     }
