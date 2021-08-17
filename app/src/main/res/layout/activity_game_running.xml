@@ -99,7 +99,7 @@
         android:fontFamily="@font/eicedigitalbaeum_regular"
         android:gravity="center_horizontal"
         android:textSize="45px"
-        android:text="베팅에 성공하여~"
+        android:text="베팅에 성공하여~ 금액을 얻었습니다."
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
