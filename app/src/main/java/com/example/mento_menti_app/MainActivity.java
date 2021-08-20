@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Batting_layout.setVisibility(View.VISIBLE);
                 Batting_Text.setText("승리");
+                Draw_Batting_BT.setEnabled(false);
+                lose_Batting_BT.setEnabled(false);
             }
         });
         Draw_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Batting_layout.setVisibility(View.VISIBLE);
                 Batting_Text.setText("무승부");
+                Win_Batting_BT.setEnabled(false);
+                lose_Batting_BT.setEnabled(false);
             }
         });
         lose_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -56,19 +60,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Batting_layout.setVisibility(View.VISIBLE);
                 Batting_Text.setText("패배");
+                Draw_Batting_BT.setEnabled(false);
+                Win_Batting_BT.setEnabled(false);
             }
         });
         Batting_Back_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Batting_layout.setVisibility(View.INVISIBLE);
+                Batting_layout.setVisibility(View.GONE);
                 Batting_Text.setText("");
                 Batting_Edit_Text.setText("");
+                Draw_Batting_BT.setEnabled(true);
+                Win_Batting_BT.setEnabled(true);
+                lose_Batting_BT.setEnabled(true);
             }
         });
         Batting_Next_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Batting_layout.setVisibility(View.GONE);
+                Draw_Batting_BT.setEnabled(true);
+                Win_Batting_BT.setEnabled(true);
+                lose_Batting_BT.setEnabled(true);
                 Intent intent = new Intent(MainActivity.this, RunningActivity.class);
                 startActivity(intent);
             }

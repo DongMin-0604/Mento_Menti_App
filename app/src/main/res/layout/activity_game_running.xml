@@ -15,18 +15,15 @@
         android:src="@drawable/logo"
         android:textColor="@color/black"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/elicedigitalbaeum_bold"
         android:gravity="center_horizontal"
         android:text="철수 승!"
@@ -54,25 +51,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/win" />
+            android:src="@drawable/ai" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
-            android:src="@drawable/lose" />
+            android:src="@drawable/left_scissors" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
-            android:src="@drawable/lose" />
+            android:src="@drawable/right_scissors" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/lose" />
+            android:src="@drawable/cheolsu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="208dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.095">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/elicedigitalbaeum_bold"
+            android:text="가위"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="75px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/elicedigitalbaeum_bold"
+            android:text="가위"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textSize="75px" />
     </LinearLayout>
 
     <TextView
@@ -84,26 +115,76 @@
         android:gravity="center_horizontal"
         android:text="베팅내역"
         android:textColor="@color/black"
-        android:textSize="70px"
+        android:textSize="80px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintVertical_bias="0.198" />
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/eicedigitalbaeum_regular"
         android:gravity="center_horizontal"
-        android:textSize="45px"
-        android:text="베팅에 성공하여~ 금액을 얻었습니다."
+        android:text="베팅에 성공하여~ 토큰을 얻었습니다."
         android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/one_mobile_pop"
+            android:gravity="center"
+            android:text="보유토큰:"
+            android:textColor="@color/black"
+            android:textSize="55px" />
+
+        <TextView
+            android:id="@+id/Batting_token_TV"
+            android:layout_width="350px"
+            android:layout_height="150px"
+            android:background="@drawable/token7"
+            android:fontFamily="@font/elicedigitalbaeum_bold"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="39px" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/go_home_bt"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:background="@drawable/button_custom"
+        android:fontFamily="@font/elicedigitalbaeum_bold"
+        android:text="홈으로"
+        android:textColor="@color/black"
+        android:textSize="50px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,10 +33,11 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="1020px"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:gravity="center"
             android:src="@drawable/game_info"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logo" />
 
@@ -125,6 +126,7 @@
             android:fontFamily="@font/elicedigitalbaeum_bold"
             android:stateListAnimator="@null"
             android:text="베팅"
+            android:enabled="true"
             android:textColor="#272727"
             android:textSize="50px" />
 
@@ -136,6 +138,7 @@
             android:fontFamily="@font/elicedigitalbaeum_bold"
             android:stateListAnimator="@null"
             android:text="베팅"
+            android:enabled="true"
             android:textColor="#272727"
             android:textSize="50px"/>
 
@@ -148,6 +151,7 @@
             android:fontFamily="@font/elicedigitalbaeum_bold"
             android:stateListAnimator="@null"
             android:text="베팅"
+            android:enabled="true"
             android:textColor="#272727"
             android:textSize="50px"/>
     </LinearLayout>
@@ -155,29 +159,36 @@
 <!--숨겨져 있는 베팅 받는 창-->
     <LinearLayout
         android:id="@+id/Batting_layout"
-        android:layout_width="900px"
-        android:layout_height="800px"
-        android:background="#DDECCA"
-        android:layout_marginTop="400px"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#8C000000"
         android:visibility="gone">
+    <LinearLayout
+        android:layout_width="930px"
+        android:layout_height="840px"
+        android:background="@drawable/popup_custom"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/Batting_Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:gravity="center"
-            android:textSize="100px"
-            android:textColor="@color/black"
             android:fontFamily="@font/one_mobile_pop"
-            />
+            android:gravity="center"
+            android:text=""
+            android:layout_marginTop="30px"
+            android:textColor="@color/black"
+            android:textSize="100px" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="50px">
+            android:layout_marginTop="60px">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,22 +197,22 @@
                 android:text="보유토큰:"
                 android:textColor="@color/black"
                 android:textSize="60px" />
-        <TextView
-            android:id="@+id/Batting_token_TV"
-            android:layout_width="350px"
-            android:layout_height="150px"
-            android:background="@drawable/token7"
-            android:fontFamily="@font/elicedigitalbaeum_bold"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="39px" />
+            <TextView
+                android:id="@+id/Batting_token_TV"
+                android:layout_width="350px"
+                android:layout_height="150px"
+                android:background="@drawable/token7"
+                android:fontFamily="@font/elicedigitalbaeum_bold"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="39px" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="70px">
+            android:layout_marginTop="80px">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -224,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="225px"
+            android:layout_marginTop="195px"
             >
             <Button
                 android:id="@+id/Batting_BackBT"
@@ -234,6 +245,7 @@
                 android:fontFamily="@font/elicedigitalbaeum_bold"
                 android:stateListAnimator="@null"
                 android:text="취소"
+                android:layout_marginLeft="30px"
                 android:textColor="#272727"
                 android:textSize="40px"
                 />
@@ -249,8 +261,10 @@
                 android:fontFamily="@font/elicedigitalbaeum_bold"
                 android:stateListAnimator="@null"
                 android:text="확인"
+                android:layout_marginRight="30px"
                 android:textColor="#272727"
                 android:textSize="40px" />
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 </FrameLayout>
