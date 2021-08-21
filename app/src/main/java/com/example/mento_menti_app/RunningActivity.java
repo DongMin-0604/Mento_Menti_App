@@ -176,9 +176,8 @@ public class RunningActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-            toast = Toast.makeText(this,"게임 진행 중에는 앱을 종료하실 수 없습니다.",Toast.LENGTH_LONG);
+            toast = Toast.makeText(this,"게임진행 창에서는 앱을 종료하실 수 없습니다.",Toast.LENGTH_SHORT);
             toast.show();
-            return;
     }
 
     @Override
