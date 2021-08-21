@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Win_Draw_lose_TV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/elicedigitalbaeum_bold"
         android:gravity="center_horizontal"
-        android:text="철수 승!"
+        android:text="게임 진행 중"
         android:textColor="#021262"
         android:textSize="90px"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,13 +38,13 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/Win_Draw_lose_TV"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
@@ -54,12 +54,14 @@
             android:src="@drawable/ai" />
 
         <ImageView
+            android:id="@+id/left_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
             android:src="@drawable/left_scissors" />
 
         <ImageView
+            android:id="@+id/right_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
@@ -77,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
         android:gravity="center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/Betting_history"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,21 +87,22 @@
         app:layout_constraintVertical_bias="0.095">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/left_Rock_Paper_Scissors_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/elicedigitalbaeum_bold"
-            android:text="가위"
+            android:text=""
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textSize="75px" />
 
         <TextView
+            android:id="@+id/right_Rock_Paper_Scissors_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/elicedigitalbaeum_bold"
-            android:text="가위"
+            android:text=""
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
@@ -107,10 +110,11 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/Betting_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:visibility="invisible"
         android:fontFamily="@font/elicedigitalbaeum_bold"
         android:gravity="center_horizontal"
         android:text="베팅내역"
@@ -124,10 +128,11 @@
         app:layout_constraintVertical_bias="0.198" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Batting_Value_TV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:visibility="invisible"
         android:fontFamily="@font/eicedigitalbaeum_regular"
         android:gravity="center_horizontal"
         android:text="베팅에 성공하여~ 토큰을 얻었습니다."
@@ -137,15 +142,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/Betting_history"
         app:layout_constraintVertical_bias="0.229" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/holding_token_Li"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="128dp"
         android:gravity="center"
+        android:visibility="invisible"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,6 +159,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/holding_token_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/one_mobile_pop"
@@ -162,7 +169,7 @@
             android:textSize="55px" />
 
         <TextView
-            android:id="@+id/Batting_token_TV"
+            android:id="@+id/Batting_token_Value_TV"
             android:layout_width="350px"
             android:layout_height="150px"
             android:background="@drawable/token7"
@@ -183,8 +190,9 @@
         android:textColor="@color/black"
         android:textSize="50px"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
