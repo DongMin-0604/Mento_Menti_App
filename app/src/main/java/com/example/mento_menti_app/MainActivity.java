@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +16,20 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime;
     private Toast toast;
+    private Toast toast2;
 
     Button Win_Batting_BT,Draw_Batting_BT,lose_Batting_BT;
     Button Batting_Back_BT,Batting_Next_BT;
     LinearLayout Batting_layout;
     TextView Batting_Text,Batting_token_TV,Home_token_TV;
     EditText Batting_Edit_Text;
-    int token = 100;
-
+    String Win_draw_lose = "";
+    String token_value,return_token;
+    String return_Batting_token;
+    int return_token_int, return_Batting_token_int;
+    private int token = 100;
+    int num1;
+    boolean Batting_check;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +46,28 @@ public class MainActivity extends AppCompatActivity {
         Batting_token_TV.setText(Integer.toString(token));
         Home_token_TV.setText(Integer.toString(token));
         Batting_Next_BT = findViewById(R.id.Batting_NextBT);
+
+        Intent intent = getIntent();
+        return_token = intent.getStringExtra("return_token_value");
+        Batting_check = intent.getBooleanExtra("return_boolean_value1",false);
+        return_Batting_token = intent.getStringExtra("return_Batting_token");
+        if (!TextUtils.isEmpty(return_token)){
+            if (Batting_check == true){
+                return_token_int = Integer.parseInt(return_token);
+                token = token + return_token_int;
+                Log.d("1","true:"+token);
+            }else if (Batting_check == false){
+                return_Batting_token_int = Integer.parseInt(return_Batting_token);
+                Log.d("1","false:"+token);
+                token = token - return_Batting_token_int;
+                Log.d("1","false:"+token);
+            }
+        }
         GameStart();
     }
     public void GameStart(){
+        Batting_token_TV.setText(Integer.toString(token));
+        Home_token_TV.setText(Integer.toString(token));
         Win_Batting_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 Batting_Text.setText("승리");
                 Draw_Batting_BT.setEnabled(false);
                 lose_Batting_BT.setEnabled(false);
+                Win_draw_lose = "승리";
             }
         });
         Draw_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 Batting_Text.setText("무승부");
                 Win_Batting_BT.setEnabled(false);
                 lose_Batting_BT.setEnabled(false);
+                Win_draw_lose = "무승부";
             }
         });
         lose_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Batting_Text.setText("패배");
                 Draw_Batting_BT.setEnabled(false);
                 Win_Batting_BT.setEnabled(false);
+                Win_draw_lose = "패배";
             }
         });
         Batting_Back_BT.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 Batting_layout.setVisibility(View.GONE);
                 Batting_Text.setText("");
                 Batting_Edit_Text.setText("");
+                Win_draw_lose = "";
                 Draw_Batting_BT.setEnabled(true);
                 Win_Batting_BT.setEnabled(true);
                 lose_Batting_BT.setEnabled(true);
@@ -82,12 +113,24 @@ public class MainActivity extends AppCompatActivity {
         Batting_Next_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Batting_layout.setVisibility(View.GONE);
-                Draw_Batting_BT.setEnabled(true);
-                Win_Batting_BT.setEnabled(true);
-                lose_Batting_BT.setEnabled(true);
-                Intent intent = new Intent(MainActivity.this, RunningActivity.class);
-                startActivity(intent);
+                token_value = Batting_Edit_Text.getText().toString();
+                if (!TextUtils.isEmpty(token_value)) {
+                    num1 = Integer.parseInt(token_value);
+                }
+                if (num1 <= 0 || TextUtils.isEmpty(token_value)|| num1 > token){
+                    toast2 = Toast.makeText(getApplicationContext(),"잘못된 입력입니다.",Toast.LENGTH_SHORT);
+                    toast2.show();
+                }else{
+                    Batting_layout.setVisibility(View.GONE);
+                    Draw_Batting_BT.setEnabled(true);
+                    Win_Batting_BT.setEnabled(true);
+                    lose_Batting_BT.setEnabled(true);
+                    Intent intent = new Intent(MainActivity.this, RunningActivity.class);
+                    intent.putExtra("token_value",token_value);
+                    intent.putExtra("win_draw_lose_value",Win_draw_lose);
+                    startActivity(intent);
+                }
+
             }
         });
     }

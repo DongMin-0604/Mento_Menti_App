@@ -229,7 +229,7 @@
                 android:fontFamily="@font/one_mobile_pop"
                 android:textSize="40px"
                 android:hint="베팅할 금액 입력"
-                android:maxLength="5"/>
+                android:maxLength="4"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

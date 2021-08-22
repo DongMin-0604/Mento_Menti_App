@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,10 +27,14 @@ public class RunningActivity extends AppCompatActivity {
     TextView Betting_Value_TV,Batting_token_Value_TV;
     TextView holding_token_TV,Betting_history_TV;
     String game = "on",com = "가위",cheolsu = "가위";
-    String value_temp;
+    String value_temp,value_temp2;
     ImageView left_img,right_img;
     int com_int,com_int_temp = 0;
     int cheolsu_int,cheolsu_int_temp = 0;
+    int token;
+    int token1;
+    String token_value1,W_D_L_value;
+    boolean Batting_check = false;
     Handler mHandler = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,13 +51,19 @@ public class RunningActivity extends AppCompatActivity {
         Betting_history_TV = findViewById(R.id.Betting_history);
         holding_token_Li = findViewById(R.id.holding_token_Li);
         Go_Home_BT.setEnabled(false);
-
+        Batting_check = false;
 
         Random random = new Random();
-        com_int_temp = random.nextInt(1500)+1;
-        cheolsu_int_temp = random.nextInt(1500)+1;
+        com_int_temp = random.nextInt(3000)+1;
+        cheolsu_int_temp = random.nextInt(3001)+1;
         com_int = com_int_temp;
         cheolsu_int = cheolsu_int_temp;
+
+        Intent intent = getIntent();
+        token_value1 = intent.getStringExtra("token_value");
+        token = Integer.parseInt(token_value1);
+        W_D_L_value = intent.getStringExtra("win_draw_lose_value");
+
         Go_Home_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +72,9 @@ public class RunningActivity extends AppCompatActivity {
                 mHandler.removeMessages(0);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("return_token_value",Integer.toString(token1));
+                intent.putExtra("return_boolean_value1",(Batting_check));
+                intent.putExtra("return_Batting_token",(token_value1));
                 startActivity(intent);
             }
         });
@@ -88,16 +102,26 @@ public class RunningActivity extends AppCompatActivity {
                 right_Rock_Paper_Scissors_TV.setText(cheolsu);
 
             }
-        },5000);
+        },4500);//4500
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (W_D_L_value.equals(value_temp2)){
+                    token1 = token * 2;
+                    Batting_check = true;
+                    token = 0;
+                }else {
+                    Batting_check = false;
+                    token = 0;
+
+                }
                 Betting_history_TV.setVisibility(View.VISIBLE);
                 Betting_Value_TV.setVisibility(View.VISIBLE);
                 holding_token_Li.setVisibility(View.VISIBLE);
+                Batting_token_Value_TV.setText(Integer.toString(token1));
                 Go_Home_BT.setEnabled(true);
             }
-        }, 6000);
+        }, 5500);//5500
     }
 
     private void img_play(int com_int, int cheolsu_int) {
@@ -141,36 +165,40 @@ public class RunningActivity extends AppCompatActivity {
         if (cheolsu == "가위"){
             if (com == "가위"){
                 value_temp = "무승부!";
-            }
-            if (com == "바위"){
+                value_temp2 = "무승부";
+            }else  if (com == "바위"){
                 value_temp = "철수 패!";
-            }
-            if (com == "보"){
+                value_temp2 = "패배";
+            }else  if (com == "보"){
                 value_temp = "철수 승!";
+                value_temp2 = "승리";
             }
         }
         if (cheolsu == "바위"){
             if (com == "가위"){
                 value_temp = "철수 승!";
-            }
-            if (com == "바위"){
+                value_temp2 = "승리";
+            }else  if (com == "바위"){
                 value_temp = "무승부!";
-            }
-            if (com == "보"){
+                value_temp2 = "무승부";
+            }else  if (com == "보"){
                 value_temp = "철수 패!";
+                value_temp2 = "패배";
             }
         }
         if (cheolsu == "보"){
             if (com == "가위"){
                 value_temp = "철수 패!";
-            }
-            if (com == "바위"){
+                value_temp2 = "패배";
+            }else  if (com == "바위"){
                 value_temp = "철수 승!";
-            }
-            if (com == "보"){
+                value_temp2 = "승리";
+            }else  if (com == "보"){
                 value_temp = "무승부!";
+                value_temp2 = "무승부";
             }
         }
+
     }
 
     @Override
