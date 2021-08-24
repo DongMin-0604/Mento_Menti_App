@@ -33,8 +33,11 @@ public class RunningActivity extends AppCompatActivity {
     int cheolsu_int,cheolsu_int_temp = 0;
     int token;
     int token1;
+    int token3;
+    String token2;
     String token_value1,W_D_L_value;
     boolean Batting_check = false;
+    boolean first_check = false;
     Handler mHandler = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,18 +66,26 @@ public class RunningActivity extends AppCompatActivity {
         token_value1 = intent.getStringExtra("token_value");
         token = Integer.parseInt(token_value1);
         W_D_L_value = intent.getStringExtra("win_draw_lose_value");
+        token3 = intent.getIntExtra("token_2",0);
+        Log.d("1","token: "+ token3);
 
         Go_Home_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RunningActivity.this,MainActivity.class);
+                first_check = true;
                 finish();
                 mHandler.removeMessages(0);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("return_token_value",Integer.toString(token1));
+                intent.putExtra("token3",token3);
                 intent.putExtra("return_boolean_value1",(Batting_check));
                 intent.putExtra("return_Batting_token",(token_value1));
+                intent.putExtra("first_check",(first_check));
+                Log.d("1","토큰: "+ token3);
+                Log.d("1","리턴 토큰: "+ token1);
+                Log.d("1","리턴 베팅 토큰: "+ token_value1);
                 startActivity(intent);
             }
         });
@@ -107,18 +118,18 @@ public class RunningActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (W_D_L_value.equals(value_temp2)){
-                    token1 = token * 2;
+                    token = token * 2;
                     Batting_check = true;
-                    token = 0;
+                    token3 = token3 + token;
                 }else {
-                    Batting_check = false;
+                    token3 = token3 - token;
                     token = 0;
-
+                    Batting_check = false;
                 }
                 Betting_history_TV.setVisibility(View.VISIBLE);
                 Betting_Value_TV.setVisibility(View.VISIBLE);
                 holding_token_Li.setVisibility(View.VISIBLE);
-                Batting_token_Value_TV.setText(Integer.toString(token1));
+                Batting_token_Value_TV.setText(Integer.toString(token));
                 Go_Home_BT.setEnabled(true);
             }
         }, 5500);//5500

@@ -1,8 +1,10 @@
 package com.example.mento_menti_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
     String token_value,return_token;
     String return_Batting_token;
     int return_token_int, return_Batting_token_int;
-    private int token = 100;
+    int token = 100;
     int num1;
     boolean Batting_check;
+    boolean first_check;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,24 +50,36 @@ public class MainActivity extends AppCompatActivity {
         Home_token_TV.setText(Integer.toString(token));
         Batting_Next_BT = findViewById(R.id.Batting_NextBT);
 
+
         Intent intent = getIntent();
         return_token = intent.getStringExtra("return_token_value");
         Batting_check = intent.getBooleanExtra("return_boolean_value1",false);
+        first_check = intent.getBooleanExtra("first_check",false);
         return_Batting_token = intent.getStringExtra("return_Batting_token");
-        if (!TextUtils.isEmpty(return_token)){
-            if (Batting_check == true){
-                return_token_int = Integer.parseInt(return_token);
-                token = token + return_token_int;
-                Log.d("1","true:"+token);
-            }else if (Batting_check == false){
-                return_Batting_token_int = Integer.parseInt(return_Batting_token);
-                Log.d("1","false:"+token);
-                token = token - return_Batting_token_int;
-                Log.d("1","false:"+token);
-            }
+        if (savedInstanceState != null){
+            token = savedInstanceState.getInt("token!");
+            first_check = savedInstanceState.getBoolean("first");
         }
+        if (first_check == false){
+            GameStart();
+        }else {
+            token = intent.getIntExtra("token3",10);
+            Log.d("1","리턴 토큰값: "+ token);
+        }
+
         GameStart();
     }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int token_save = token;
+        boolean first_check_save = first_check;
+        outState.putInt("token!",token_save);
+        outState.putBoolean("first",first_check_save);
+
+    }
+
     public void GameStart(){
         Batting_token_TV.setText(Integer.toString(token));
         Home_token_TV.setText(Integer.toString(token));
@@ -127,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     lose_Batting_BT.setEnabled(true);
                     Intent intent = new Intent(MainActivity.this, RunningActivity.class);
                     intent.putExtra("token_value",token_value);
+                    intent.putExtra("token_2",token);
                     intent.putExtra("win_draw_lose_value",Win_draw_lose);
                     startActivity(intent);
                 }
@@ -148,5 +164,11 @@ public class MainActivity extends AppCompatActivity {
             finish();
             toast.cancel();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }
