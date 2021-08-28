@@ -72,21 +72,35 @@ public class RunningActivity extends AppCompatActivity {
         Go_Home_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RunningActivity.this,MainActivity.class);
-                first_check = true;
-                finish();
-                mHandler.removeMessages(0);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("return_token_value",Integer.toString(token1));
-                intent.putExtra("token3",token3);
-                intent.putExtra("return_boolean_value1",(Batting_check));
-                intent.putExtra("return_Batting_token",(token_value1));
-                intent.putExtra("first_check",(first_check));
-                Log.d("1","토큰: "+ token3);
-                Log.d("1","리턴 토큰: "+ token1);
-                Log.d("1","리턴 베팅 토큰: "+ token_value1);
-                startActivity(intent);
+                if (token3 < 5000 && token3 > 0){
+                    Intent intent = new Intent(RunningActivity.this,MainActivity.class);
+                    first_check = true;
+                    finish();
+                    mHandler.removeMessages(0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("return_token_value",Integer.toString(token1));
+                    intent.putExtra("token3",token3);
+                    intent.putExtra("return_boolean_value1",(Batting_check));
+                    intent.putExtra("return_Batting_token",(token_value1));
+                    intent.putExtra("first_check",(first_check));
+                    Log.d("1","토큰: "+ token3);
+                    Log.d("1","리턴 토큰: "+ token1);
+                    Log.d("1","리턴 베팅 토큰: "+ token_value1);
+                    startActivity(intent);
+                }else if (token3 >= 5000){
+                    Intent intent1 = new Intent(RunningActivity.this,HappyEndingAcitivity.class);
+                    finish();
+                    mHandler.removeMessages(0);
+                    startActivity(intent1);
+
+                }else if (token3 <= 0){
+                    Intent intent2 = new Intent(RunningActivity.this,BadEndingActivity.class);
+                    finish();
+                    mHandler.removeMessages(0);
+                    startActivity(intent2);
+                }
+
             }
         });
         mHandler = new Handler(){
