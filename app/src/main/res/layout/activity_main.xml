@@ -162,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="#8C000000"
+        android:background="#A6000000"
         android:visibility="gone">
     <LinearLayout
         android:layout_width="930px"
@@ -235,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="195px"
+            android:layout_marginTop="190px"
             >
             <Button
                 android:id="@+id/Batting_BackBT"

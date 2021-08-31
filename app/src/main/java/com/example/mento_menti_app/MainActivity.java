@@ -28,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
     String Win_draw_lose = "";
     String token_value,return_token;
     String return_Batting_token;
-    int return_token_int, return_Batting_token_int;
-    int token = 100;
+    int token = 500;
     int num1;
     boolean Batting_check;
     boolean first_check;
+    boolean Happy_ending_check = false;
+    boolean Bad_ending_check = false;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +52,16 @@ public class MainActivity extends AppCompatActivity {
         Home_token_TV.setText(Integer.toString(token));
         Batting_Next_BT = findViewById(R.id.Batting_NextBT);
 
+        sp = getSharedPreferences("token_save",MODE_PRIVATE);
+        token = sp.getInt("save",500);
 
         Intent intent = getIntent();
         return_token = intent.getStringExtra("return_token_value");
         Batting_check = intent.getBooleanExtra("return_boolean_value1",false);
         first_check = intent.getBooleanExtra("first_check",false);
         return_Batting_token = intent.getStringExtra("return_Batting_token");
+        Happy_ending_check = intent.getBooleanExtra("return_happy_ending_check",false);
+        Bad_ending_check = intent.getBooleanExtra("return_bad_ending_check",false);
         if (savedInstanceState != null){
             token = savedInstanceState.getInt("token!");
             first_check = savedInstanceState.getBoolean("first");
@@ -63,10 +69,15 @@ public class MainActivity extends AppCompatActivity {
         if (first_check == false){
             GameStart();
         }else {
-            token = intent.getIntExtra("token3",10);
+            token = intent.getIntExtra("token3",500);
             Log.d("1","리턴 토큰값: "+ token);
         }
+        if (Happy_ending_check == true || Bad_ending_check == true){
+            token = 500;
+//          엔딩 보고 홈으로 올 시 토큰값 초기화
+        }else {
 
+        }
         GameStart();
     }
 
@@ -169,6 +180,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        sp = getSharedPreferences("token_save",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("save",token);
+        editor.commit();
 
     }
 }

@@ -10,18 +10,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HappyEndingAcitivity extends AppCompatActivity {
     Button Go_Home_BT;
+    boolean ending_check;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_happy_ending);
         Go_Home_BT = findViewById(R.id.go_home_bt);
+        ending_check = true;
 
         Go_Home_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HappyEndingAcitivity.this,MainActivity.class);
+                intent.putExtra("return_happy_ending_check",(ending_check));
                 startActivity(intent);
+
             }
         });
 

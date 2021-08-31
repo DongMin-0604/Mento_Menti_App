@@ -25,7 +25,7 @@ public class RunningActivity extends AppCompatActivity {
     LinearLayout holding_token_Li;
     TextView Win_draw_lose_TV,left_Rock_Paper_Scissors_TV,right_Rock_Paper_Scissors_TV;
     TextView Betting_Value_TV,Batting_token_Value_TV;
-    TextView holding_token_TV,Betting_history_TV;
+    TextView Betting_history_TV;
     String game = "on",com = "가위",cheolsu = "가위";
     String value_temp,value_temp2;
     ImageView left_img,right_img;
@@ -34,7 +34,6 @@ public class RunningActivity extends AppCompatActivity {
     int token;
     int token1;
     int token3;
-    String token2;
     String token_value1,W_D_L_value;
     boolean Batting_check = false;
     boolean first_check = false;
