@@ -7,11 +7,11 @@
     android:orientation="vertical"
     tools:context=".BadEndingActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="배드엔딩"
+        android:src="@drawable/bad_ending"
         android:textSize="100px"
         android:gravity="center"
         android:layout_weight="1"/>

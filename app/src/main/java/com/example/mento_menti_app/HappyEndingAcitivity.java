@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HappyEndingAcitivity extends AppCompatActivity {
     Button Go_Home_BT;
     boolean ending_check;
-
+    private Toast toast;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class HappyEndingAcitivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HappyEndingAcitivity.this,MainActivity.class);
                 intent.putExtra("return_happy_ending_check",(ending_check));
+                finish();
                 startActivity(intent);
 
             }
@@ -31,4 +33,10 @@ public class HappyEndingAcitivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        toast = Toast.makeText(this,"'홈으로' 버튼을 눌러주세요.",Toast.LENGTH_SHORT);
+        toast.show();
+    }
 }

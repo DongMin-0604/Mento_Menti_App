@@ -8,11 +8,11 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="해피엔딩"
+        android:src="@drawable/happ_ending2"
         android:textSize="100px"
         android:gravity="center"
         android:layout_weight="1"/>

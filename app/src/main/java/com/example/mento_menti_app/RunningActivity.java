@@ -131,7 +131,9 @@ public class RunningActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (W_D_L_value.equals(value_temp2)){
+                    token3 = token3 - token;
                     token = token * 2;
+                    //토큰 = 건 값 , 토큰  3 = 총 토큰
                     Batting_check = true;
                     token3 = token3 + token;
                 }else {

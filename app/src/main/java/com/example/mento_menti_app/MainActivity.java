@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime;
     private Toast toast;
     private Toast toast2;
-
     Button Win_Batting_BT,Draw_Batting_BT,lose_Batting_BT;
     Button Batting_Back_BT,Batting_Next_BT;
     LinearLayout Batting_layout;
@@ -32,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
     int num1;
     boolean Batting_check;
     boolean first_check;
-    boolean Happy_ending_check = false;
-    boolean Bad_ending_check = false;
+    boolean Happy_ending_check = false,Bad_ending_check = false;
     SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Win_Batting_BT = findViewById(R.id.win_bt);
         Draw_Batting_BT = findViewById(R.id.draw_bt);
         lose_Batting_BT = findViewById(R.id.lose_bt);
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         sp = getSharedPreferences("token_save",MODE_PRIVATE);
         token = sp.getInt("save",500);
+        first_check = sp.getBoolean("first_check",false);
 
         Intent intent = getIntent();
         return_token = intent.getStringExtra("return_token_value");
@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
         if (Happy_ending_check == true || Bad_ending_check == true){
             token = 500;
 //          엔딩 보고 홈으로 올 시 토큰값 초기화
-        }else {
-
         }
         GameStart();
     }
@@ -102,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 Draw_Batting_BT.setEnabled(false);
                 lose_Batting_BT.setEnabled(false);
                 Win_draw_lose = "승리";
+                Batting_Edit_Text.setText("");
+
             }
         });
         Draw_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 Win_Batting_BT.setEnabled(false);
                 lose_Batting_BT.setEnabled(false);
                 Win_draw_lose = "무승부";
+                Batting_Edit_Text.setText("");
+
             }
         });
         lose_Batting_BT.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 Draw_Batting_BT.setEnabled(false);
                 Win_Batting_BT.setEnabled(false);
                 Win_draw_lose = "패배";
+                Batting_Edit_Text.setText("");
             }
         });
         Batting_Back_BT.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            moveTaskToBack(true);
             finish();
             toast.cancel();
         }
@@ -183,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
         sp = getSharedPreferences("token_save",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("save",token);
+        editor.putBoolean("first_check",first_check);
+        editor.apply();
         editor.commit();
 
     }
