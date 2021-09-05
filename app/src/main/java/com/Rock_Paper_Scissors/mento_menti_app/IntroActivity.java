@@ -1,4 +1,4 @@
-package com.example.mento_menti_app;
+package com.Rock_Paper_Scissors.mento_menti_app;
 
 import android.content.Intent;
 import android.os.Bundle;
