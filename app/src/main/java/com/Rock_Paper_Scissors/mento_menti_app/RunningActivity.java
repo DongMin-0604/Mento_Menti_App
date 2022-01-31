@@ -112,11 +112,14 @@ public class RunningActivity extends AppCompatActivity {
                     com_int = com_int%3;
                     cheolsu_int = cheolsu_int%3;
                     img_play(com_int,cheolsu_int);
+                    Log.d("1","키:"+com_int);
+
                 }
                 mHandler.sendEmptyMessageDelayed(0,100);
             }
         };
         mHandler.sendEmptyMessage(0);
+        //4.5초 뒤 결과값 표시
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -127,6 +130,7 @@ public class RunningActivity extends AppCompatActivity {
 
             }
         },4500);//4500
+       //5.5초뒤 토큰 계산
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -151,6 +155,7 @@ public class RunningActivity extends AppCompatActivity {
     }
 
     private void img_play(int com_int, int cheolsu_int) {
+        Log.d("1","img_play");
         switch (com_int){
             case 0:
                 left_img.setImageResource(R.drawable.left_rock);
